@@ -80,8 +80,6 @@ export class Application {
         // home page
         router.post('/', index.index.bind(index.index));
 
-        router.get('/', index.ping.bind(index.ping));
-
         // use router middleware
         this.app.use(router);
 

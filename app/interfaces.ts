@@ -15,17 +15,32 @@ export interface GameInfo {
 
 export interface IPlayer {
     Name: string;
-    CurrentHealth: number;
-    MaximumHealth: number;
-    Score: number;
+    AttackPower: number;
     CarriedResources: number;
     CarryingCapacity: number;
+    Defence: number;
+    Health: number;
+    MaxHealth: number;
+    Score: number;
+    TotalResources: number;
     Position: Point;
+    HouseLocation: Point;
 }
 
-export interface Point {
-    X: number;
-    Y: number;
+export class Point {
+    public X: number;
+    public Y: number;
+
+    public constructor(x: number, y: number) {
+        this.X = x;
+        this.Y = y;
+    }
+
+    public Distance(other: Point): number {
+        const xDist = other.X - this.X;
+        const yDist = other.Y - this.Y;
+        return Math.sqrt(xDist * xDist + yDist * yDist);
+    }
 }
 
 export enum TileContent {
