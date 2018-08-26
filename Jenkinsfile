@@ -6,7 +6,7 @@ node {
     }
 
     stage('Build image') {
-        app = docker.build("julienduf/test-node-ts:latest")
+        app = docker.build("lhgames-2017/test-node-ts:latest")
     }
 
     stage('Push image') {
