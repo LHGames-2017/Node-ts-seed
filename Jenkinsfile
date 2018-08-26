@@ -10,6 +10,8 @@ node {
     }
 
     stage('Push image') {
-        app.push("latest");
+        docker.withRegistry('https://gcr.io') {
+            app.push("latest");
+        }
     }
 }
