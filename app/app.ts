@@ -27,7 +27,7 @@ export class Application {
      * @return {ng.auto.IInjectorService} Returns the newly created injector for this this.app.
      */
     public static bootstrap(): Application {
-        return new Application();
+        return new Application();dsadsadsa
     }
 
     /**
