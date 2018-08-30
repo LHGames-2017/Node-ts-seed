@@ -18,6 +18,3 @@ These actions take a point as a parameter (the target position for the action)
 - HealAction doesn't take any parameters
 - UpgradeAction takes the UpgradeType as a parameter.
 - PurchaseAction takes a PurchasableItem as a parameter. You can only buy one of each item, except for HealthPotions, which don't have a limit.
-
-
-TEST
