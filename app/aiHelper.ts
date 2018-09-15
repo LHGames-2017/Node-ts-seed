@@ -29,16 +29,16 @@ export class AIHelper {
                 action = { ActionName: "PurchaseAction", Content: "DevolutionsBackpack" };
                 break;
             case PurchasableItem.DevolutionsPickaxe:
-                action = { ActionName: "PurchaseAction", Content: "DevolutionsBackpack" };
+                action = { ActionName: "PurchaseAction", Content: "DevolutionsPickaxe" };
                 break;
             case PurchasableItem.HealthPotion:
-                action = { ActionName: "PurchaseAction", Content: "DevolutionsBackpack" };
+                action = { ActionName: "PurchaseAction", Content: "HealthPotion" };
                 break;
             case PurchasableItem.MicrosoftSword:
-                action = { ActionName: "PurchaseAction", Content: "DevolutionsBackpack" };
+                action = { ActionName: "PurchaseAction", Content: "MicrosoftSword" };
                 break;
             case PurchasableItem.UbisoftShield:
-                action = { ActionName: "PurchaseAction", Content: "DevolutionsBackpack" };
+                action = { ActionName: "PurchaseAction", Content: "UbisoftShield" };
                 break;
         }
         return JSON.stringify(action);
