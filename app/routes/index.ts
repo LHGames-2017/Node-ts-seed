@@ -1,11 +1,11 @@
-import * as express from 'express';
-import { GameInfo, Tile, Point } from '../interfaces';
+import { Request, Response, NextFunction } from 'express';
+import { GameInfo, Tile, Point, TileContent } from '../interfaces';
 import { AIHelper } from '../aiHelper';
 
 module Route {
 
     export class Index {
-        private static decompressMap(compressedMap: any): Tile[][] {
+        private static decompressMap(compressedMap: any, xMin: number, yMin: number): Tile[][] {
             const map = new Array<Array<Tile>>();
             compressedMap = compressedMap.substring(2, compressedMap.length - 3);
             const row = compressedMap.split('],[');
@@ -13,12 +13,13 @@ module Route {
                 map[i] = new Array<Tile>();
                 const column = row[i].split('{');
                 for (let j = 0; j < column.length - 1; j++) {
+                    let content = TileContent.Empty;
+                    if (column[j + 1][0] !== '}') {
+                        content = +(column[j + 1].split('}')[0])
+                    }
                     map[i][j] = {
-                        Content: +(column[j + 1].split(',')[0]),
-                        Position: new Point(
-                            column[j + 1].split(',')[1],
-                            column[j + 1].split(',')[2].substring(0, column[j + 1].split(',')[2].length - 1)
-                        )
+                        Content: content,
+                        Position: new Point(i + xMin, j + yMin)
                     };
                 }
             }
@@ -26,19 +27,16 @@ module Route {
         }
 
         private static getAction(map: Tile[][], gameInfo: GameInfo) {
-
+            // TODO: Implement your ai HERE.
+            AIHelper.createMoveAction(new Point(1, 0));
         }
 
-        public index(req: express.Request, res: express.Response, next: express.NextFunction) {
-            const mapData = JSON.parse(req.body.map) as GameInfo;
-            const map = Index.decompressMap(mapData.CustomSerializedMap);
+        public index(req: Request, res: Response, next: NextFunction) {
+            const mapData = JSON.parse(req.body.data) as GameInfo;
+            const map = Index.decompressMap(mapData.CustomSerializedMap, mapData.xMin, mapData.yMin);
 
-            let action = Index.getAction(map, mapData);
+            const action = Index.getAction(map, mapData);
             res.send(action);
-        }
-
-        public ping(req: express.Request, res: express.Response, next: express.NextFunction) {
-            res.json({ success: true, test: false });
         }
     }
 }

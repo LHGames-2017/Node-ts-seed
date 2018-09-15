@@ -11,6 +11,8 @@ export interface GameInfo {
     Player: IPlayer;
     CustomSerializedMap: string;
     OtherPlayers: IPlayer[];
+    xMin: number;
+    yMin: number;
 }
 
 export interface IPlayer {
