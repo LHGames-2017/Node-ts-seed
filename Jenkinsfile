@@ -1,6 +1,4 @@
 node {
-    def app
-
     stage('Initialize'){
         def dockerHome = tool 'docker'
         env.PATH = "${dockerHome}/bin:${env.PATH}"
@@ -11,13 +9,10 @@ node {
     }
 
     stage('Build image') {
-        sleep 600
-        app = docker.build("lhgames-2017/test-node-ts:latest")
+        sh 'docker build -t gcr.io/lhgames-2017/test-node-ts:latest'
     }
 
     stage('Push image') {
-        docker.withRegistry('https://gcr.io') {
-            app.push("latest");
-        }
+        sh 'docker push gcr.io/lhgames-2017/test-node-ts:latest'
     }
 }
