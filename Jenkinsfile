@@ -9,7 +9,7 @@ node {
     }
 
     stage('Build image') {
-        sh 'docker build -t gcr.io/lhgames-2017/test-node-ts:latest'
+        sh 'docker build -t gcr.io/lhgames-2017/test-node-ts:latest .'
     }
 
     stage('Push image') {
