@@ -11,6 +11,7 @@ node {
     }
 
     stage('Build image') {
+        sleep 300
         app = docker.build("lhgames-2017/test-node-ts:latest")
     }
 
