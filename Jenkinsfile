@@ -1,21 +1,18 @@
 node {
-    def app
-    
-    stage('Initialize'){	
-        env.PATH = "/usr/bin:${env.PATH}"	
-    }
-
     stage('Clone repository') {
         checkout scm
     }
+    
+    stage('Initialize'){
+        def dockerHome = tool 'docker'
+        env.PATH = "${dockerHome}/bin:${env.PATH}"
+    }
 
     stage('Build image') {
-        sh '/usr/bin/docker build -t lhgames-2017/test-node-ts:latest .'
+        sh 'docker build -t gcr.io/lhgames-2017/test-node-ts:$BUILD_NUMBER .'
     }
 
     stage('Push image') {
-        docker.withRegistry('https://gcr.io') {
-            app.push("latest");
-        }
+        sh 'docker push gcr.io/lhgames-2017/test-node-ts:$BUILD_NUMBER'
     }
 }
