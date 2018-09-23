@@ -1,10 +1,3 @@
-/**
- * app.ts - Configures an Express application.
- *
- * @authors Nicolas Richard, Emilio Riviera
- * @date 2017/01/09
- */
-
 import * as express from 'express';
 import * as path from 'path';
 import * as logger from 'morgan';
