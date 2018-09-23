@@ -1,7 +1,3 @@
-export interface Map {
-    Tiles: Tile[][];
-}
-
 export interface Tile {
     Content: TileContent;
     Position: Point;
@@ -16,17 +12,17 @@ export interface GameInfo {
 }
 
 export interface IPlayer {
-    Name: string;
-    AttackPower: number;
-    CarriedResources: number;
-    CarryingCapacity: number;
-    Defence: number;
     Health: number;
     MaxHealth: number;
-    Score: number;
+    CarriedResources: number;
+    CarryingCapacity: number;
+    AttackPower: number;
+    Defence: number;
     TotalResources: number;
     Position: Point;
     HouseLocation: Point;
+    Score: number;
+    Name: string;
 }
 
 export class Point {
