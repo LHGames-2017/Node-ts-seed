@@ -112,6 +112,13 @@ export class AIHelper {
         console.log(action);
         return action;
     }
+    /**
+     * Creates an action that does nothing.
+     * @returns string Empty action.
+     */
+    public static createEmptyAction(): string {
+        return '';
+    }
 
     private static createAction(name: string, target: Point): string {
         const action = {
