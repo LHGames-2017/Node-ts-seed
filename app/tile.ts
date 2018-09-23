@@ -1,4 +1,5 @@
-import { TileContent, Point } from './interfaces';
+import { TileContent } from './interfaces';
+import { Point } from './point';
 
 export class Tile {
 

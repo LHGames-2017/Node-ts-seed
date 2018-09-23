@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { GameInfo, Tile, Point, TileContent } from '../interfaces';
+import { GameInfo } from '../interfaces';
 import { Map } from '../map';
 import { Bot } from '../bot';
 
