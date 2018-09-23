@@ -1,5 +1,6 @@
 import { TileContent } from './interfaces';
 import { Tile } from './tile';
+import { Point } from './point';
 
 
 export class Map {
@@ -27,23 +28,23 @@ export class Map {
         this.deserializeMap(customSerializedMap);
         this.initMapSize();
     }
+
     /**
-     *  Returns the TileType at this location. If you try to look outside 
-     *  of your visible region, it will always return TileType.Tile (Empty
-     *  tile).
+     *  Returns the TileContent at this location. If you try to look outside
+     *  of your visible region, it will always return TileContent.Empty.
      *
      *  Negative values are valid since the map wraps around when you reach
      *  the end.
-     * @param  {number} x X Coordinate.
-     * @param  {number} y Y Coordinate.
+     * @param  {Point} position The tile's position.
      * @returns TileContent The content of the tile.
      */
-    public getTileAt(x: number, y: number): TileContent {
-        if (x < this.xMin || x > this.xMax || y < this.yMin || y > this.yMax) {
+    public getTileAt(position: Point): TileContent {
+        if (position.X < this.xMin || position.X > this.xMax || position.Y < this.yMin || position.Y > this.yMax) {
             return TileContent.Empty;
         }
-        return this.tiles[x - this.xMin][y - this.yMin].tileType;
+        return this.tiles[position.X - this.xMin][position.Y - this.yMin].tileType;
     }
+
     /**
      * Deserialize the map received from the game server.
      * DO NOT MODIFY THIS.
