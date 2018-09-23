@@ -1,4 +1,5 @@
-import { Point, UpgradeType, PurchasableItem } from './interfaces';
+import { UpgradeType, PurchasableItem } from './interfaces';
+import { Point } from './point';
 
 export class AIHelper {
 
@@ -13,7 +14,7 @@ export class AIHelper {
     }
 
     /**
-     * Creates a melee attack Action. You can only attack someone on an 
+     * Creates a melee attack Action. You can only attack someone on an
      * Adjacent tile.
      * @param  {Point} destination The absolute position of your target.
      * @returns string The attack Action.
@@ -23,7 +24,7 @@ export class AIHelper {
     }
 
     /**
-     * Creates a Collect Action. You can only collect resources from 
+     * Creates a Collect Action. You can only collect resources from
      * Adjacent tiles (no diagonals).
      * @param  {Point} destination The absolute position you want to collect from.
      * @returns string The collect Action.
@@ -80,6 +81,7 @@ export class AIHelper {
         }
         return JSON.stringify(action);
     }
+
     /**
      * Creates an upgrade action for the specified Upgrade. You muse be in
      * your house to upgrade your player. The action will fail if you do

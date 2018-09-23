@@ -1,7 +1,4 @@
-export interface Tile {
-    Content: TileContent;
-    Position: Point;
-}
+import { Point } from './point';
 
 export interface GameInfo {
     Player: IPlayer;
@@ -23,22 +20,7 @@ export interface IPlayer {
     HouseLocation: Point;
     Score: number;
     Name: string;
-}
-
-export class Point {
-    public X: number;
-    public Y: number;
-
-    public constructor(x: number, y: number) {
-        this.X = x;
-        this.Y = y;
-    }
-
-    public Distance(other: Point): number {
-        const xDist = other.X - this.X;
-        const yDist = other.Y - this.Y;
-        return Math.sqrt(xDist * xDist + yDist * yDist);
-    }
+    CarriedItems: PurchasableItem[];
 }
 
 export enum TileContent {

@@ -1,9 +1,10 @@
-import { IPlayer, Point } from './interfaces';
+import { IPlayer } from './interfaces';
 import { Map } from './map';
 import { AIHelper } from './aiHelper';
+import { Point } from './point';
 
 export class Bot {
-    private playerInfo: IPlayer
+    private playerInfo: IPlayer;
 
     public constructor() { }
 
