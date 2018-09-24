@@ -39,10 +39,12 @@ export class Map {
      * @returns TileContent The content of the tile.
      */
     public getTileAt(position: Point): TileContent {
-        if (position.X < this.xMin || position.X > this.xMax || position.Y < this.yMin || position.Y > this.yMax) {
+        if (position.x < this.xMin || position.x >= this.xMax || position.y < this.yMin || position.y >= this.yMax) {
             return TileContent.Empty;
         }
-        return this.tiles[position.X - this.xMin][position.Y - this.yMin].tileType;
+        const x = position.x - this.xMin;
+        const y = position.y - this.yMin;
+        return this.tiles[x][y].tileType;
     }
 
     /**

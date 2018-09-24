@@ -4,7 +4,7 @@ import { AIHelper } from './aiHelper';
 import { Point } from './point';
 
 export class Bot {
-    private playerInfo: IPlayer;
+    protected playerInfo: IPlayer;
 
     public constructor() { }
 

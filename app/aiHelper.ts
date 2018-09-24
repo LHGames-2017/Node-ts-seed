@@ -20,7 +20,7 @@ export class AIHelper {
      * @returns string The attack Action.
      */
     public static createAttackAction(direction: Point): string {
-        return AIHelper.createAction('AttackAction', direction);
+        return AIHelper.createAction('MeleeAttackAction', direction);
     }
 
     /**
