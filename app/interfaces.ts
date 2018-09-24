@@ -13,6 +13,7 @@ export interface IPlayer {
     MaxHealth: number;
     CarriedResources: number;
     CarryingCapacity: number;
+    CollectingSpeed: number;
     AttackPower: number;
     Defence: number;
     TotalResources: number;

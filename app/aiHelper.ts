@@ -6,31 +6,31 @@ export class AIHelper {
     /**
      * Creates a steal Action. You can only steal from Adjacent tiles
      * (no diagonals).
-     * @param  {Point} destination The absolute position you want to steal from.
+     * @param  {Point} direction The direction from which you want to steal.
      * @returns string The steal Action.
      */
-    public static createStealAction(destination: Point): string {
-        return AIHelper.createAction('StealAction', destination);
+    public static createStealAction(direction: Point): string {
+        return AIHelper.createAction('StealAction', direction);
     }
 
     /**
      * Creates a melee attack Action. You can only attack someone on an
      * Adjacent tile.
-     * @param  {Point} destination The absolute position of your target.
+     * @param  {Point} direction The direction of your target.
      * @returns string The attack Action.
      */
-    public static createAttackAction(destination: Point): string {
-        return AIHelper.createAction('AttackAction', destination);
+    public static createAttackAction(direction: Point): string {
+        return AIHelper.createAction('MeleeAttackAction', direction);
     }
 
     /**
      * Creates a Collect Action. You can only collect resources from
      * Adjacent tiles (no diagonals).
-     * @param  {Point} destination The absolute position you want to collect from.
+     * @param  {Point} direction The direction from which you want to collect.
      * @returns string The collect Action.
      */
-    public static createCollectAction(destination: Point): string {
-        return AIHelper.createAction('CollectAction', destination);
+    public static createCollectAction(direction: Point): string {
+        return AIHelper.createAction('CollectAction', direction);
     }
 
     /**
@@ -111,6 +111,13 @@ export class AIHelper {
         }
         console.log(action);
         return action;
+    }
+    /**
+     * Creates an action that does nothing.
+     * @returns string Empty action.
+     */
+    public static createEmptyAction(): string {
+        return '';
     }
 
     private static createAction(name: string, target: Point): string {
