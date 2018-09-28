@@ -30,7 +30,7 @@ export class Application {
      * @constructor
      */
     constructor() {
-dsadsa
+
         // Application instantiation
         this.app = express();
 
