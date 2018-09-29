@@ -2,7 +2,7 @@
 #          DO NOT TOUCH THIS FILE          #
 ############################################
 
-FROM node:8.1.0-alpine
+FROM node:alpine
 
 # Create app directory
 RUN mkdir -p /usr/src/app

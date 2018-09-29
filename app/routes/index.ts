@@ -7,6 +7,10 @@ module Route {
 
     export class Index {
         private bot: Bot;
+        public ping(res: Response) {
+            res.send("I am alive!");
+        }
+
         public index(req: Request, res: Response, next: NextFunction) {
             if (!this.bot) {
                 this.bot = new Bot();

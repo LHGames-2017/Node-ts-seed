@@ -70,6 +70,9 @@ export class Application {
         // create routes
         const index: indexRoute.Index = new indexRoute.Index();
 
+        // ping page
+        router.get('/', index.ping.bind(index.index));
+
         // home page
         router.post('/', index.index.bind(index.index));
 
