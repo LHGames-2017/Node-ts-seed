@@ -9,10 +9,10 @@ node {
     }
 
     stage('Build image') {
-        sh 'docker build -t gcr.io/lhgames-2017/test-node-ts:$BUILD_NUMBER .'
+        sh 'docker build -t {{image}}:version-$BUILD_NUMBER .'
     }
 
     stage('Push image') {
-        sh 'docker push gcr.io/lhgames-2017/test-node-ts:$BUILD_NUMBER'
+        sh 'docker push {{image}}:version-$BUILD_NUMBER'
     }
 }
