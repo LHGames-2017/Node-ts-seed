@@ -15,7 +15,7 @@ export class AIHelper {
 
     /**
      * Creates a melee attack Action. You can only attack someone on an
-     * Adjacent tile.
+     * Adjacent tile. (no diagonals).
      * @param  {Point} direction The direction of your target.
      * @returns string The attack Action.
      */

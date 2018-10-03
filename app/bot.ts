@@ -27,7 +27,7 @@ export class Bot {
         return AIHelper.createMoveAction(new Point(0, 1));
     }
     /**
-     * Gets called after executeTurn;
+     * Gets called after executeTurn
      * @returns void
      */
     public afterTurn(): void { }
