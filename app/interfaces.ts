@@ -1,10 +1,10 @@
 import { Point } from './point';
 
 export interface GameInfo {
-    Player: IPlayer;
+    Player: Player;
     CustomSerializedMap: string;
     Leaderboard: string[];
-    OtherPlayers: IPlayer[];
+    OtherPlayers: Player[];
     xMin: number;
     yMin: number;
 }
@@ -42,6 +42,7 @@ export class Player implements IPlayer {
     public Score: number;
     public Name: string;
     public UpgradeLevels: number[];
+
     public getUpgradeLevel(type: UpgradeType): number {
         return this.UpgradeLevels[type];
     }
