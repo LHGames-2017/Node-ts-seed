@@ -1,15 +1,16 @@
 import { TileContent } from './interfaces';
-import { Tile } from './tile';
+import { Tile, ResourceTile } from './tile';
 import { Point } from './point';
 
 
 export class Map {
 
-    private tiles: Tile[][]
+    private tiles: Tile[][];
     private xMin: number;
     private yMin: number;
     private xMax: number;
     private yMax: number;
+    private _wallsAreBreakable: boolean;
 
     // tslint:disable-next-line:variable-name
     private _visibleDistance: number;
@@ -22,9 +23,18 @@ export class Map {
         return this._visibleDistance;
     }
 
-    public constructor(customSerializedMap: string, xMin: number, yMin: number) {
+    /**
+     * If the walls (trees) are breakable
+     * @returns boolean
+     */
+    public get wallsAreBreakable(): boolean {
+        return this._wallsAreBreakable;
+    }
+
+    public constructor(customSerializedMap: string, xMin: number, yMin: number, wallsAreBreakable: boolean) {
         this.xMin = xMin;
         this.yMin = yMin;
+        this._wallsAreBreakable = wallsAreBreakable;
         this.deserializeMap(customSerializedMap);
         this.initMapSize();
     }
@@ -44,7 +54,7 @@ export class Map {
         }
         const x = position.x - this.xMin;
         const y = position.y - this.yMin;
-        return this.tiles[x][y].tileType;
+        return this.tiles[x][y].TileType;
     }
 
     /**
@@ -64,10 +74,20 @@ export class Map {
             for (let j = 0; j < column.length - 1; j++) {
                 let tileType = TileContent.Empty;
                 if (column[j + 1][0] !== '}') {
-                    const infos = column[j + 1].split('}');
+                    const infos = column[j + 1].split('}') as any;
                     tileType = parseInt(infos[0], 10) as TileContent;
+                    if (tileType === TileContent.Resource) {
+                        const amountLeft = parseInt(infos[0].split(',')[1], 10);
+                        const density = parseInt(infos[0].split(',')[2], 10);
+                        this.tiles[i][j] = new ResourceTile(
+                            tileType, i, j,
+                            amountLeft, density
+                        );
+                    }
                 }
-                this.tiles[i][j] = new Tile(tileType, i + this.xMin, j + this.yMin);
+                if (tileType !== TileContent.Resource) {
+                    this.tiles[i][j] = new Tile(tileType, i + this.xMin, j + this.yMin);
+                }
             }
         }
     }

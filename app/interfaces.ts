@@ -1,11 +1,13 @@
 import { Point } from './point';
 
 export interface GameInfo {
-    Player: IPlayer;
+    Player: Player;
     CustomSerializedMap: string;
-    OtherPlayers: IPlayer[];
+    Leaderboard: string[];
+    OtherPlayers: Player[];
     xMin: number;
     yMin: number;
+    WallsAreBreakable: boolean;
 }
 
 export interface IPlayer {
@@ -14,14 +16,37 @@ export interface IPlayer {
     CarriedResources: number;
     CarryingCapacity: number;
     CollectingSpeed: number;
+    TotalResources: number;
     AttackPower: number;
     Defence: number;
-    TotalResources: number;
     Position: Point;
     HouseLocation: Point;
+    CarriedItems: PurchasableItem[];
     Score: number;
     Name: string;
-    CarriedItems: PurchasableItem[];
+    UpgradeLevels: number[];
+    getUpgradeLevel(type: UpgradeType): number;
+}
+
+export class Player implements IPlayer {
+    public Health: number;
+    public MaxHealth: number;
+    public CarriedResources: number;
+    public CarryingCapacity: number;
+    public CollectingSpeed: number;
+    public TotalResources: number;
+    public AttackPower: number;
+    public Defence: number;
+    public Position: Point;
+    public HouseLocation: Point;
+    public CarriedItems: PurchasableItem[];
+    public Score: number;
+    public Name: string;
+    public UpgradeLevels: number[];
+
+    public getUpgradeLevel(type: UpgradeType): number {
+        return this.UpgradeLevels[type];
+    }
 }
 
 export enum TileContent {
@@ -43,9 +68,9 @@ export enum UpgradeType {
 }
 
 export enum PurchasableItem {
-    MicrosoftSword,
-    UbisoftShield,
-    DevolutionsBackpack,
-    DevolutionsPickaxe,
+    Sword,
+    Shield,
+    Backpack,
+    Pickaxe,
     HealthPotion,
 }
