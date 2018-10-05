@@ -29,6 +29,7 @@ module Route {
 
             const action = this.bot.executeTurn(map, mapData.OtherPlayers);
             this.bot.afterTurn();
+            console.log(action);
             res.send(action);
         }
     }
