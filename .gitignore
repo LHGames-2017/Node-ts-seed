@@ -19,9 +19,5 @@ coverage/
 
 
 # Garder les fichiers necessaires pour les tests
-!systemjs.config.js
-!karma.conf.js
-!karma-test-shim.js
-!systemjs.config.extras.js
 !tslint.json
 !tsconfig.json
