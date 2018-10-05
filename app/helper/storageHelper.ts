@@ -24,7 +24,7 @@ export class StorageHelper {
                 const data = fs.readFileSync('/data/document.json');
                 this.documents = JSON.parse(data.toString());
             } catch (e) {
-                this.documents = null;
+                this.documents = {};
                 console.log(e);
             }
         }
