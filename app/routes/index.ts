@@ -7,18 +7,18 @@ module Route {
 
     export class Index {
         private bot: Bot;
-        
+
         public ping(res: Response) {
-            res.send("I am alive!");
+            res.send('I am alive!');
         }
-      
+
         public index = (req: Request, res: Response, next: NextFunction) => {
             if (!this.bot) {
                 this.bot = new Bot();
             }
 
             const mapData = JSON.parse(req.body.data) as GameInfo;
-            const map = new Map(mapData.CustomSerializedMap, mapData.xMin, mapData.yMin);
+            const map = new Map(mapData.CustomSerializedMap, mapData.xMin, mapData.yMin, mapData.WallsAreBreakable);
 
             mapData.Player = Object.assign(new Player(), mapData.Player);
             mapData.OtherPlayers.forEach(player => {

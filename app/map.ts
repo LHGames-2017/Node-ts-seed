@@ -5,11 +5,12 @@ import { Point } from './point';
 
 export class Map {
 
-    private tiles: Tile[][]
+    private tiles: Tile[][];
     private xMin: number;
     private yMin: number;
     private xMax: number;
     private yMax: number;
+    private _wallsAreBreakable: boolean;
 
     // tslint:disable-next-line:variable-name
     private _visibleDistance: number;
@@ -22,9 +23,18 @@ export class Map {
         return this._visibleDistance;
     }
 
-    public constructor(customSerializedMap: string, xMin: number, yMin: number) {
+    /**
+     * If the walls (trees) are breakable
+     * @returns boolean
+     */
+    public get wallsAreBreakable(): boolean {
+        return this._wallsAreBreakable;
+    }
+
+    public constructor(customSerializedMap: string, xMin: number, yMin: number, wallsAreBreakable: boolean) {
         this.xMin = xMin;
         this.yMin = yMin;
+        this._wallsAreBreakable = wallsAreBreakable;
         this.deserializeMap(customSerializedMap);
         this.initMapSize();
     }
