@@ -1,12 +1,10 @@
-import { AIHelper } from './aiHelper';
-import { Player } from './interfaces';
-import { Map } from './map';
-import { Point } from './point';
+import { AIHelper } from '../helper/aiHelper';
+import { Player } from '../helper/interfaces';
+import { Map } from '../helper/map';
+import { Point } from '../helper/point';
 
 export class Bot {
     protected playerInfo: Player;
-
-    public constructor() { }
 
     /**
      * Gets called before ExecuteTurn. This is where you get your bot's state.
@@ -26,6 +24,7 @@ export class Bot {
         // Determine what action you want to take.
         return AIHelper.createMoveAction(new Point(0, 1));
     }
+
     /**
      * Gets called after executeTurn
      * @returns void

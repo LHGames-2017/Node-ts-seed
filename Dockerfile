@@ -8,6 +8,7 @@ FROM node:alpine
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
+ADD package-lock.json /tmp/package-lock.json
 ADD package.json /tmp/package.json
 RUN cd /tmp && npm install
 RUN cp -a /tmp/node_modules /usr/src/app

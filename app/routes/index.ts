@@ -1,18 +1,18 @@
-import { Request, Response, NextFunction } from 'express';
-import { GameInfo, Player } from '../interfaces';
-import { Map } from '../map';
-import { Bot } from '../bot';
+import { Request, Response } from 'express';
+import { GameInfo, Player } from '../helper/interfaces';
+import { Map } from '../helper/map';
+import { Bot } from '../bot/bot';
 
 module Route {
 
     export class Index {
         private bot: Bot;
 
-        public ping(res: Response) {
+        public ping(req: Request, res: Response) {
             res.send('I am alive!');
         }
 
-        public index = (req: Request, res: Response, next: NextFunction) => {
+        public index = (req: Request, res: Response) => {
             if (!this.bot) {
                 this.bot = new Bot();
             }
@@ -21,8 +21,8 @@ module Route {
             const map = new Map(mapData.CustomSerializedMap, mapData.xMin, mapData.yMin, mapData.WallsAreBreakable);
 
             mapData.Player = Object.assign(new Player(), mapData.Player);
-            mapData.OtherPlayers.forEach(player => {
-                player = Object.assign(new Player(), player);
+            mapData.OtherPlayers = mapData.OtherPlayers.map(player => {
+                return Object.assign(new Player(), player);
             });
 
             this.bot.beforeTurn(mapData.Player);
